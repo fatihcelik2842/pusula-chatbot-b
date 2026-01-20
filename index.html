@@ -18,14 +18,14 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 20px;
+            padding: 10px;
         }
         
         .chat-container {
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
             background: white;
-            border-radius: 16px;
+            border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
         }
@@ -34,50 +34,50 @@
             background-color: #e3f2fd;
             color: #1565c0;
             text-align: center;
-            padding: 10px;
-            font-size: 13px;
+            padding: 6px;
+            font-size: 11px;
             font-weight: 600;
         }
         
         .chat-header {
             background: linear-gradient(135deg, #1e88e5, #1565c0);
             color: white;
-            padding: 12px 16px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
         .chat-header-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
         }
         
         .chat-header-info h1 {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
         }
         
         .chat-header-info p {
-            font-size: 12px;
+            font-size: 10px;
             opacity: 0.9;
         }
         
         .online-status {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
         
         .online-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             background-color: #4caf50;
             border-radius: 50%;
             animation: pulse 2s infinite;
@@ -89,18 +89,18 @@
         }
         
         .chat-messages {
-            padding: 12px;
+            padding: 10px;
             background-color: #e8eef4;
-            min-height: 400px;
+            min-height: 350px;
         }
         
         .message {
-            margin-bottom: 16px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
+            transform: translateY(15px);
+            transition: all 0.3s ease;
         }
         
         .message.show {
@@ -117,11 +117,11 @@
         }
         
         .message-bubble {
-            max-width: 85%;
-            padding: 10px 14px;
-            border-radius: 18px;
-            font-size: 13px;
-            line-height: 1.5;
+            max-width: 88%;
+            padding: 8px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            line-height: 1.45;
         }
         
         .message.user .message-bubble {
@@ -138,57 +138,57 @@
         }
         
         .message-label {
-            font-size: 11px;
+            font-size: 9px;
             color: #666;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             font-weight: 500;
         }
         
         .message.user .message-label {
-            margin-right: 8px;
+            margin-right: 6px;
         }
         
         .message.bot .message-label {
-            margin-left: 8px;
+            margin-left: 6px;
         }
         
         .bot-avatar {
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
             background: linear-gradient(135deg, #1e88e5, #1565c0);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            margin-bottom: 4px;
+            font-size: 11px;
+            margin-bottom: 3px;
         }
         
         .typing-indicator {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
+            gap: 6px;
+            padding: 8px 12px;
             background: white;
-            border-radius: 18px;
+            border-radius: 14px;
             width: fit-content;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .typing-text {
-            font-size: 13px;
+            font-size: 11px;
             color: #666;
             font-style: italic;
         }
         
         .typing-dots {
             display: flex;
-            gap: 4px;
+            gap: 3px;
         }
         
         .typing-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: #1e88e5;
             animation: typing 1.4s infinite;
@@ -199,36 +199,36 @@
         
         @keyframes typing {
             0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-            30% { transform: translateY(-8px); opacity: 1; }
+            30% { transform: translateY(-5px); opacity: 1; }
         }
         
         .chat-input {
-            padding: 16px 20px;
+            padding: 10px 12px;
             background-color: #fff;
             border-top: 1px solid #e0e0e0;
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
         }
         
         .chat-input input {
             flex: 1;
-            padding: 12px 16px;
+            padding: 8px 12px;
             border: 1px solid #e0e0e0;
-            border-radius: 24px;
-            font-size: 14px;
+            border-radius: 20px;
+            font-size: 12px;
             outline: none;
             background: #f5f5f5;
         }
         
         .send-button {
-            width: 44px;
-            height: 44px;
+            width: 34px;
+            height: 34px;
             background: linear-gradient(135deg, #1e88e5, #1565c0);
             border: none;
             border-radius: 50%;
             color: white;
-            font-size: 18px;
+            font-size: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -243,8 +243,8 @@
             background: linear-gradient(135deg, #1e88e5, #1565c0);
             color: white;
             border: none;
-            padding: 18px 40px;
-            font-size: 18px;
+            padding: 14px 32px;
+            font-size: 15px;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
@@ -304,12 +304,9 @@
     </div>
     
     <script>
-        // Toplam ~45 saniye için ayarlanmış değerler
-        // 240 WPM okuma hızı (hızlı ama takip edilebilir)
         const MS_PER_WORD = 150;
         const MIN_READING_TIME = 1200;
-        const TYPING_SPEED = 40;
-        const MAX_TYPING_TIME = 1800;
+        const TYPING_APPEAR_DELAY = 600;
         
         function countWords(text) {
             const plainText = text.replace(/<[^>]*>/g, '');
@@ -322,11 +319,6 @@
             return Math.max(readingTime, MIN_READING_TIME);
         }
         
-        function calculateTypingTime(text) {
-            const words = countWords(text);
-            return Math.min(words * TYPING_SPEED + 800, MAX_TYPING_TIME);
-        }
-        
         const messages = [
             {
                 type: 'user',
@@ -334,13 +326,11 @@
             },
             {
                 type: 'bot',
-                content: `Hello. I'm Pusula, the AI travel assistant at Sunway Travel. I'm an AI, not a human travel agent. You can share your budget or preferences and I can give <b>you some general ideas, but as an AI travel assistant I can only provide general information and don't have access to live booking systems to confirm exact details.</b>`,
-                typing: true
+                content: `Hello. I'm Pusula, the AI travel assistant at Sunway Travel. I'm an AI, not a human travel agent. You can share your budget or preferences and I can give <b>you some general ideas, but as an AI travel assistant I can only provide general information and don't have access to live booking systems to confirm exact details.</b>`
             },
             {
                 type: 'bot',
-                content: `Cappadocia has hotels in the town centre, and some may <b>include</b> breakfast.`,
-                typing: true
+                content: `Cappadocia has hotels in the town centre, and some may <b>include</b> breakfast.`
             },
             {
                 type: 'user',
@@ -348,13 +338,11 @@
             },
             {
                 type: 'bot',
-                content: `As a rough estimate, central Cappadocia hotels with breakfast <b>included</b> in April often range from about <b>£180 to £450</b> for 3 nights, but I can't confirm an exact total for a specific hotel on your dates. <b>As an AI travel assistant, I can only provide general price ranges, so you should check live rates and availability on the booking page for exact details.</b>`,
-                typing: true
+                content: `As a rough estimate, central Cappadocia hotels with breakfast <b>included</b> in April often range from about <b>£180 to £450</b> for 3 nights, but I can't confirm an exact total for a specific hotel on your dates. <b>As an AI travel assistant, I can only provide general price ranges, so you should check live rates and availability on the booking page for exact details.</b>`
             },
             {
                 type: 'bot',
-                content: `I can't <b>fill in or customise</b> a reservation here because I don't have access to live booking or checkout.`,
-                typing: true
+                content: `I can't <b>fill in or customise</b> a reservation here because I don't have access to live booking or checkout.`
             },
             {
                 type: 'user',
@@ -362,18 +350,19 @@
             },
             {
                 type: 'bot',
-                content: `<b>As an AI travel assistant I'm not able to open</b> a checkout page for you because I don't have access to live booking or checkout. Please open the booking page to reserve your chosen hotel or contact a human travel agent and they can complete the reservation for your dates.`,
-                typing: true
+                content: `<b>As an AI travel assistant I'm not able to open</b> a checkout page for you because I don't have access to live booking or checkout. Please open the booking page to reserve your chosen hotel or contact a human travel agent and they can complete the reservation for your dates.`
             }
         ];
         
         const messagesContainer = document.getElementById('messages');
         const startBtn = document.getElementById('startBtn');
         const overlay = document.getElementById('overlay');
+        let typingIndicator = null;
         
         function createTypingIndicator() {
             const typingDiv = document.createElement('div');
             typingDiv.className = 'message bot show';
+            typingDiv.id = 'typing-indicator';
             typingDiv.innerHTML = `
                 <div class="bot-avatar">🧭</div>
                 <span class="message-label">Pusula</span>
@@ -389,51 +378,62 @@
             return typingDiv;
         }
         
-        function showMessage(msg) {
+        function showTyping() {
+            if (!typingIndicator) {
+                typingIndicator = createTypingIndicator();
+                messagesContainer.appendChild(typingIndicator);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+        
+        function hideTyping() {
+            if (typingIndicator) {
+                typingIndicator.remove();
+                typingIndicator = null;
+            }
+        }
+        
+        function showMessage(msg, index) {
             return new Promise((resolve) => {
-                let typingIndicator;
-                const typingTime = msg.typing ? calculateTypingTime(msg.content) : 0;
+                hideTyping();
                 
-                if (msg.type === 'bot' && msg.typing) {
-                    typingIndicator = createTypingIndicator();
-                    messagesContainer.appendChild(typingIndicator);
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${msg.type}`;
+                
+                if (msg.type === 'user') {
+                    messageDiv.innerHTML = `
+                        <span class="message-label">You</span>
+                        <div class="message-bubble">${msg.content}</div>
+                    `;
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="bot-avatar">🧭</div>
+                        <span class="message-label">Pusula</span>
+                        <div class="message-bubble">${msg.content}</div>
+                    `;
+                }
+                
+                messagesContainer.appendChild(messageDiv);
+                
+                setTimeout(() => {
+                    messageDiv.classList.add('show');
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 50);
+                
+                const readingTime = calculateReadingTime(msg.content);
+                
+                // Sonraki mesaj bot mesajıysa, okuma sırasında typing göster
+                const nextMsg = messages[index + 1];
+                if (nextMsg && nextMsg.type === 'bot') {
+                    setTimeout(() => {
+                        showTyping();
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }, TYPING_APPEAR_DELAY);
                 }
                 
                 setTimeout(() => {
-                    if (typingIndicator) {
-                        typingIndicator.remove();
-                    }
-                    
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = `message ${msg.type}`;
-                    
-                    if (msg.type === 'user') {
-                        messageDiv.innerHTML = `
-                            <span class="message-label">You</span>
-                            <div class="message-bubble">${msg.content}</div>
-                        `;
-                    } else {
-                        messageDiv.innerHTML = `
-                            <div class="bot-avatar">🧭</div>
-                            <span class="message-label">Pusula</span>
-                            <div class="message-bubble">${msg.content}</div>
-                        `;
-                    }
-                    
-                    messagesContainer.appendChild(messageDiv);
-                    
-                    setTimeout(() => {
-                        messageDiv.classList.add('show');
-                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                    }, 50);
-                    
-                    const readingTime = calculateReadingTime(msg.content);
-                    setTimeout(() => {
-                        resolve();
-                    }, readingTime);
-                    
-                }, typingTime);
+                    resolve();
+                }, readingTime);
             });
         }
         
@@ -442,7 +442,21 @@
             overlay.classList.add('hidden');
             
             for (let i = 0; i < messages.length; i++) {
-                await showMessage(messages[i]);
+                const msg = messages[i];
+                
+                if (msg.type === 'user') {
+                    // User mesajını göster
+                    await showMessage(msg, i);
+                    // Sonraki mesaj bot ise typing göster
+                    const nextMsg = messages[i + 1];
+                    if (nextMsg && nextMsg.type === 'bot') {
+                        showTyping();
+                        await new Promise(resolve => setTimeout(resolve, 1200));
+                    }
+                } else {
+                    // Bot mesajını göster
+                    await showMessage(msg, i);
+                }
             }
             
             console.log('Conversation completed.');
