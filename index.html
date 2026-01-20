@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusula - Authentic AI Travel Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 520px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        .study-label {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .chat-header-icon {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .chat-header-info h1 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .chat-header-info p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #4caf50;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .chat-messages {
+            padding: 20px;
+            background-color: #e8eef4;
+            min-height: 400px;
+        }
+        
+        .message {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+        
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .message.user {
+            align-items: flex-end;
+        }
+        
+        .message.bot {
+            align-items: flex-start;
+        }
+        
+        .message-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .message.user .message-bubble {
+            background-color: #1e88e5;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.bot .message-bubble {
+            background-color: #fff;
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        
+        .message.user .message-label {
+            margin-right: 8px;
+        }
+        
+        .message.bot .message-label {
+            margin-left: 8px;
+        }
+        
+        .bot-avatar {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 18px;
+            width: fit-content;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .typing-text {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #1e88e5;
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+        
+        .chat-input {
+            padding: 16px 20px;
+            background-color: #fff;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 24px;
+            font-size: 14px;
+            outline: none;
+            background: #f5f5f5;
+        }
+        
+        .send-button {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .start-btn {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(30, 136, 229, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .start-btn:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 15px 40px rgba(30, 136, 229, 0.6);
+        }
+        
+        .start-btn.hidden {
+            display: none;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+        
+        .overlay.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <button class="start-btn" id="startBtn">▶ Start Conversation</button>
+    
+    <div class="chat-container">
+        <div class="study-label">STUDY 2 – AUTHENTIC AI TRAVEL ASSISTANT</div>
+        
+        <div class="chat-header">
+            <div class="chat-header-icon">🧭</div>
+            <div class="chat-header-info">
+                <h1>Pusula</h1>
+                <div class="online-status">
+                    <span class="online-dot"></span>
+                    <p>AI Travel Assistant • Sunway Travel</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="messages"></div>
+        
+        <div class="chat-input">
+            <input type="text" placeholder="Type a message..." disabled>
+            <button class="send-button">➤</button>
+        </div>
+    </div>
+    
+    <script>
+        // Toplam ~45 saniye için ayarlanmış değerler
+        // 240 WPM okuma hızı (hızlı ama takip edilebilir)
+        const MS_PER_WORD = 150;
+        const MIN_READING_TIME = 1200;
+        const TYPING_SPEED = 40;
+        const MAX_TYPING_TIME = 1800;
+        
+        function countWords(text) {
+            const plainText = text.replace(/<[^>]*>/g, '');
+            return plainText.split(/\s+/).filter(word => word.length > 0).length;
+        }
+        
+        function calculateReadingTime(text) {
+            const words = countWords(text);
+            const readingTime = words * MS_PER_WORD;
+            return Math.max(readingTime, MIN_READING_TIME);
+        }
+        
+        function calculateTypingTime(text) {
+            const words = countWords(text);
+            return Math.min(words * TYPING_SPEED + 800, MAX_TYPING_TIME);
+        }
+        
+        const messages = [
+            {
+                type: 'user',
+                content: `Hi, I'm visiting Cappadocia in April. Is there any hotel in the city centre with breakfast <b>included</b>?`
+            },
+            {
+                type: 'bot',
+                content: `Hello! 👋🙂 <b>I understand,</b> I can help with that. I'm Pusula, the AI travel assistant at Sunway Travel. I'm an AI, not a human travel agent. Feel free to share your budget or preferences and explore options comfortably <b>in a supportive, judgment-free way.</b>`,
+                typing: true
+            },
+            {
+                type: 'bot',
+                content: `Yes, there are hotels in the town centre of Cappadocia in April that <b>include</b> breakfast, such as Otag Hotel.`,
+                typing: true
+            },
+            {
+                type: 'user',
+                content: `Great! My dates are 12–15 April. How much would it be?`
+            },
+            {
+                type: 'bot',
+                content: `Thanks!🙂 <b>Absolutely,</b> I can help with that. I've checked the live booking system for 12–15 April. Otag Hotel is available, and the current total price is <b>£271 for 3 nights</b> (including breakfast). This is a verified live price for your exact dates, with a "Last updated" time shown next to it.`,
+                typing: true
+            },
+            {
+                type: 'bot',
+                content: `I've saved your dates (12–15 April) and breakfast-<b>included</b> preference to prefill the reservation details for you. Nothing is booked until you confirm at checkout.`,
+                typing: true
+            },
+            {
+                type: 'user',
+                content: `Great. Please take me to the reservation page to book Otag Hotel for 12–15 April.`
+            },
+            {
+                type: 'bot',
+                content: `Of course. I've opened the checkout <b>page</b> on Sunway Travel with Otag Hotel preselected for 12–15 April at £271. You're all set to continue, please review the details for <b>Otag Hotel, 12-15 April,</b> and enter the guest information to complete the booking.`,
+                typing: true
+            }
+        ];
+        
+        const messagesContainer = document.getElementById('messages');
+        const startBtn = document.getElementById('startBtn');
+        const overlay = document.getElementById('overlay');
+        
+        function createTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot show';
+            typingDiv.innerHTML = `
+                <div class="bot-avatar">🧭</div>
+                <span class="message-label">Pusula</span>
+                <div class="typing-indicator">
+                    <span class="typing-text">Pusula is typing</span>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            `;
+            return typingDiv;
+        }
+        
+        function showMessage(msg) {
+            return new Promise((resolve) => {
+                let typingIndicator;
+                const typingTime = msg.typing ? calculateTypingTime(msg.content) : 0;
+                
+                if (msg.type === 'bot' && msg.typing) {
+                    typingIndicator = createTypingIndicator();
+                    messagesContainer.appendChild(typingIndicator);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+                
+                setTimeout(() => {
+                    if (typingIndicator) {
+                        typingIndicator.remove();
+                    }
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${msg.type}`;
+                    
+                    if (msg.type === 'user') {
+                        messageDiv.innerHTML = `
+                            <span class="message-label">You</span>
+                            <div class="message-bubble">${msg.content}</div>
+                        `;
+                    } else {
+                        messageDiv.innerHTML = `
+                            <div class="bot-avatar">🧭</div>
+                            <span class="message-label">Pusula</span>
+                            <div class="message-bubble">${msg.content}</div>
+                        `;
+                    }
+                    
+                    messagesContainer.appendChild(messageDiv);
+                    
+                    setTimeout(() => {
+                        messageDiv.classList.add('show');
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }, 50);
+                    
+                    const readingTime = calculateReadingTime(msg.content);
+                    setTimeout(() => {
+                        resolve();
+                    }, readingTime);
+                    
+                }, typingTime);
+            });
+        }
+        
+        async function startSimulation() {
+            startBtn.classList.add('hidden');
+            overlay.classList.add('hidden');
+            
+            for (let i = 0; i < messages.length; i++) {
+                await showMessage(messages[i]);
+            }
+            
+            console.log('Conversation completed.');
+        }
+        
+        startBtn.addEventListener('click', startSimulation);
+    </script>
+</body>
+</html>
