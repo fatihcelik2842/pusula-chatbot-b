@@ -260,6 +260,14 @@
         
         const inputField = document.querySelector('.chat-input textarea');
         
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            // Ekstra güvenlik için bir kez daha scroll
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 100);
+        }
+        
         const messageTimes = [
             3500,   // User 1
             9500,   // Bot 1
@@ -334,7 +342,7 @@
             if (!typingIndicator) {
                 typingIndicator = createTypingIndicator();
                 messagesContainer.appendChild(typingIndicator);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                scrollToBottom();
             }
         }
         
@@ -394,11 +402,12 @@
                 messagesContainer.appendChild(messageDiv);
                 setTimeout(() => {
                     messageDiv.classList.add('show');
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    scrollToBottom();
                     
                     // Son mesajsa hemen end message göster
                     if (index === messages.length - 1) {
                         endMessage.classList.add('show');
+                        scrollToBottom();
                     }
                 }, 50);
                 
@@ -406,7 +415,7 @@
                 if (nextMsg && nextMsg.type === 'bot') {
                     setTimeout(() => {
                         showTyping();
-                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                        scrollToBottom();
                     }, TYPING_APPEAR_DELAY);
                 }
                 
