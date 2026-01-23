@@ -12,16 +12,18 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            padding: 20px;
+            align-items: center;
+            padding: 10px;
+            margin: 0;
         }
         .chat-container {
             width: 100%;
-            max-width: 580px;
+            max-width: 500px;
             background: white;
             border-radius: 16px;
             box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
             overflow: hidden;
+            position: relative;
         }
         .study-label {
             background-color: #e3f2fd;
@@ -64,9 +66,11 @@
             50% { opacity: 0.5; }
         }
         .chat-messages {
-            padding: 20px;
+            padding: 15px;
             background-color: #e8eef4;
-            min-height: 450px;
+            min-height: 320px;
+            max-height: 400px;
+            overflow-y: auto;
         }
         .message {
             margin-bottom: 16px;
@@ -178,15 +182,15 @@
             justify-content: center;
         }
         .start-btn {
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: linear-gradient(135deg, #1e88e5, #1565c0);
             color: white;
             border: none;
-            padding: 18px 40px;
-            font-size: 18px;
+            padding: 16px 36px;
+            font-size: 17px;
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
@@ -200,13 +204,14 @@
         }
         .start-btn.hidden { display: none; }
         .overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.9);
             z-index: 999;
+            border-radius: 16px;
         }
         .overlay.hidden { display: none; }
         
@@ -225,10 +230,10 @@
     </style>
 </head>
 <body>
-    <div class="overlay" id="overlay"></div>
-    <button class="start-btn" id="startBtn">▶ Start Conversation</button>
-    
     <div class="chat-container">
+        <div class="overlay" id="overlay"></div>
+        <button class="start-btn" id="startBtn">▶ Start Conversation</button>
+        
         <div class="study-label">AI TRAVEL ASSISTANT</div>
         <div class="chat-header">
             <div class="chat-header-icon">🧭</div>
