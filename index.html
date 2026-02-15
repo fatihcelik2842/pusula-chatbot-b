@@ -270,13 +270,13 @@
         
         const messageTimes = [
             3500,   // User 1
-            9500,   // Bot 1
+            11000,   // Bot 1
             4000,   // Bot 2
             3000,   // User 2
-            10000,  // Bot 3
+            12000,  // Bot 3
             6500,   // Bot 4
             3000,   // User 3
-            8500    // Bot 5
+            10000    // Bot 5
         ];
         
         const messages = [
@@ -445,7 +445,7 @@
                     }
                 } else {
                     // Bot mesajından sonra user geliyorsa max 1 saniye bekle
-                    const maxWait = (nextMsg && nextMsg.type === 'user') ? 1000 : null;
+                    const maxWait = (nextMsg && nextMsg.type === 'user') ? 2000 : null;
                     await showMessage(msg, i, maxWait);
                 }
             }
